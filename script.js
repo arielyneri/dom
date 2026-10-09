@@ -169,13 +169,18 @@ function editarTarefa(id){
 }
 
 function excluirTarefa(id){
-    const confirmar = confirm('Tem certeza que deseja excluir a tarefa');
+    const confirmar = confirm('Tem certeza que deseja excluir a tarefa?');
     if(!confirmar){
         return;
     }
-    tarefas = tarefas.filter(function (tarefa) {
-        return tarefa.id !== id;
+    const indice = tarefas.findIndex(function (tarefa) {
+        return tarefa.id === id;
     });
+    if(indice !== - 1) {
+        tarefas.splice(indice, 1);
+    }
+
+
     salvarTarefa();
     renderizarTarefas();
 }
